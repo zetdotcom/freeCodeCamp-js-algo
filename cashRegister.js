@@ -1,5 +1,7 @@
 function checkCashRegister(price, cash, cid) {
 
+  const changeOutput = document.getElementById("changeOutput");
+
   let change = Number(cash - price); // return change value as Number
   let cidValues = cid.map((item) => item[1]); // iterates over cash-in-drawer values
 
@@ -25,16 +27,52 @@ function checkCashRegister(price, cash, cid) {
       status: "INSUFFICIENT_FUNDS",
       change: []
     }
+
     return output;
   }
 
-  const open = () => {}
+  const open = () => {
+    output = {
+      status: "OPEN",
+      change: []
+    }
+    let changeGiven = [];
+
+    // while (changeGiven < change) {   cid.map((item) => {     item.map((money) =>
+    // {       changeGiven.push(money);     })   }) }
+    for (let i = cid.length - 1; i >= 0; i--) {
+      // changeGiven.push(cid[i][1]);
+      let remaining;
+      if (cid[i][1] > change) {
+        changeGiven;
+      } else if (change > cid[i][1]) {
+        changeGiven.push(cid[i]);
+        remaining = change - cid[i][1];
+      } else if (cid[i][1] > remaining && remaining > 0) {
+        changeGiven.push(cid[i][0], remaining)
+        remaining = 0;
+      } else {
+        changeGiven.push(cid[i]);
+        remaining -= cid[i][1];
+      }
+
+    }
+
+    // changeGiven = Math   .max   .apply(null, cidValues);
+
+    output.change = changeGiven;
+
+    changeOutput.innerHTML = JSON.stringify(output.change);
+    return output;
+  }
 
   if (change === cidSum) {
     closed();
   } else if (change > cidSum) {
     insuffcient_funds();
-  } else {}
+  } else {
+    open();
+  }
 
   console.log(output);
   return output;
@@ -44,7 +82,7 @@ function checkCashRegister(price, cash, cid) {
 // 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY",
 // 60], ["ONE HUNDRED", 100]]
 
-checkCashRegister(19.5, 20, [
+checkCashRegister(3.26, 100, [
   [
     "PENNY", 1.01
   ],
