@@ -37,11 +37,48 @@ function checkCashRegister(price, cash, cid) {
       change: []
     }
     let changeGiven = [];
-
-    // while (changeGiven < change) {   cid.map((item) => {     item.map((money) =>
-    // {       changeGiven.push(money);     })   }) }
+    let hundreds,
+      twenties,
+      tens,
+      fives,
+      ones,
+      quarters,
+      dimes,
+      nickiels,
+      pennies;
+    cid.map((item) => {
+      if (item[0] == "ONE HUNDRED") {
+        hundreds = item[1] / 100;
+        changeGiven.push(hundreds);
+      } else if (item[0] == "TWENTY") {
+        twenties = item[1] / 20;
+        changeGiven.push(twenties);
+      } else if (item[0] == "TEN") {
+        tens = item[1] / 10;
+        changeGiven.push(tens);
+      } else if (item[0] == "FIVE") {
+        fives = item[1] / 5;
+        changeGiven.push(fives);
+      } else if (item[0] == "ONE") {
+        ones = item[1] / 1;
+        changeGiven.push(ones);
+      } else if (item[0] == "QUARTER") {
+        quarters = item[1] / 0.25;
+        changeGiven.push(quarters);
+      } else if (item[0] == "NICKEL") {
+        nickiels = item[1] / 0.05;
+        changeGiven.push(nickiels);
+      } else if (item[0] == "DIME") {
+        dimes = item[1] / 0.10;
+        changeGiven.push(dimes);
+      } else if (item[0] == "PENNY") {
+        pennies = item[1] / 0.01;
+        changeGiven.push(pennies);
+      }
+    })
+    /*
     for (let i = cid.length - 1; i >= 0; i--) {
-      // changeGiven.push(cid[i][1]);
+
       let remaining;
       if (cid[i][1] > change) {
         changeGiven;
@@ -57,9 +94,9 @@ function checkCashRegister(price, cash, cid) {
       }
 
     }
+    */
 
-    // changeGiven = Math   .max   .apply(null, cidValues); ------------ display
-    // change and checks DO NOT CHANGE --------
+    // ------------ display change and checks DO NOT CHANGE --------
 
     output.change = changeGiven;
     let changeGivenArr = changeGiven.map(item => item[1]);
@@ -94,12 +131,12 @@ function checkCashRegister(price, cash, cid) {
 // 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY",
 // 60], ["ONE HUNDRED", 100]]
 
-checkCashRegister(3.26, 100, [
+checkCashRegister(3.26, 450, [
   [
     "PENNY", 1.03
   ],
   [
-    "NICKEL", 2.05
+    "NICKEL", 2.1
   ],
   [
     "DIME", 3.1
@@ -119,5 +156,5 @@ checkCashRegister(3.26, 100, [
   [
     "TWENTY", 60
   ],
-  ["ONE HUNDRED", 100]
+  ["ONE HUNDRED", 500]
 ]);

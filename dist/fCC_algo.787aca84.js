@@ -323,28 +323,64 @@ function checkCashRegister(price, cash, cid) {
       change: []
     };
     var changeGiven = [];
-
-    // while (changeGiven < change) {   cid.map((item) => {     item.map((money) =>
-    // {       changeGiven.push(money);     })   }) }
-    for (var i = cid.length - 1; i >= 0; i--) {
-      // changeGiven.push(cid[i][1]);
-      var remaining = void 0;
+    var hundreds = void 0,
+        twenties = void 0,
+        tens = void 0,
+        fives = void 0,
+        ones = void 0,
+        quarters = void 0,
+        dimes = void 0,
+        nickiels = void 0,
+        pennies = void 0;
+    cid.map(function (item) {
+      if (item[0] == "ONE HUNDRED") {
+        hundreds = item[1] / 100;
+        changeGiven.push(hundreds);
+      } else if (item[0] == "TWENTY") {
+        twenties = item[1] / 20;
+        changeGiven.push(twenties);
+      } else if (item[0] == "TEN") {
+        tens = item[1] / 10;
+        changeGiven.push(tens);
+      } else if (item[0] == "FIVE") {
+        fives = item[1] / 5;
+        changeGiven.push(fives);
+      } else if (item[0] == "ONE") {
+        ones = item[1] / 1;
+        changeGiven.push(ones);
+      } else if (item[0] == "QUARTER") {
+        quarters = item[1] / 0.25;
+        changeGiven.push(quarters);
+      } else if (item[0] == "NICKEL") {
+        nickiels = item[1] / 0.05;
+        changeGiven.push(nickiels);
+      } else if (item[0] == "DIME") {
+        dimes = item[1] / 0.10;
+        changeGiven.push(dimes);
+      } else if (item[0] == "PENNY") {
+        pennies = item[1] / 0.01;
+        changeGiven.push(pennies);
+      }
+    });
+    /*
+    for (let i = cid.length - 1; i >= 0; i--) {
+        let remaining;
       if (cid[i][1] > change) {
         changeGiven;
       } else if (change > cid[i][1]) {
         changeGiven.push(cid[i]);
         remaining = change - cid[i][1];
       } else if (cid[i][1] > remaining && remaining > 0) {
-        changeGiven.push(cid[i][0], remaining);
+        changeGiven.push(cid[i][0], remaining)
         remaining = 0;
       } else {
         changeGiven.push(cid[i]);
         remaining -= cid[i][1];
       }
-    }
+      }
+    */
 
-    // changeGiven = Math   .max   .apply(null, cidValues); ------------ display
-    // change and checks DO NOT CHANGE --------
+    // ------------ display change and checks DO NOT CHANGE --------
 
     output.change = changeGiven;
     var changeGivenArr = changeGiven.map(function (item) {
@@ -380,7 +416,7 @@ function checkCashRegister(price, cash, cid) {
 // 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY",
 // 60], ["ONE HUNDRED", 100]]
 
-checkCashRegister(3.26, 100, [["PENNY", 1.03], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+checkCashRegister(3.26, 450, [["PENNY", 1.03], ["NICKEL", 2.1], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 500]]);
 },{}],2:[function(require,module,exports) {
 'use strict';
 
@@ -397,7 +433,7 @@ var _cashRegister = require('./cashRegister');
 var _cashRegister2 = _interopRequireDefault(_cashRegister);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./romanConverter":3,"./telNumValidator":5,"./cashRegister":4}],10:[function(require,module,exports) {
+},{"./romanConverter":3,"./telNumValidator":5,"./cashRegister":4}],17:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -426,7 +462,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56241' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50299' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -567,5 +603,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[10,2], null)
+},{}]},{},[17,2], null)
 //# sourceMappingURL=/fCC_algo.787aca84.map
