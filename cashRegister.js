@@ -58,12 +58,24 @@ function checkCashRegister(price, cash, cid) {
 
     }
 
-    // changeGiven = Math   .max   .apply(null, cidValues);
+    // changeGiven = Math   .max   .apply(null, cidValues); ------------ display
+    // change and checks DO NOT CHANGE --------
 
     output.change = changeGiven;
+    let changeGivenArr = changeGiven.map(item => item[1]);
+    let changeGivenSum = changeGivenArr.reduce(function (a, b) {
+      let sum = a + b;
+      return sum;
+    })
+    let changeCheck = changeGivenSum - change;
 
-    changeOutput.innerHTML = JSON.stringify(output.change);
+    // output.change += ` change: ${change}`;
+
+    changeOutput.innerHTML = `${JSON.stringify(changeGiven)} <br/> change: ${change} <br/> change given sum: ${changeGivenSum} <br/> check: ${changeCheck} `;
     return output;
+
+    // ------------ display change and checks DO NOT CHANGE --------
+
   }
 
   if (change === cidSum) {
@@ -84,7 +96,7 @@ function checkCashRegister(price, cash, cid) {
 
 checkCashRegister(3.26, 100, [
   [
-    "PENNY", 1.01
+    "PENNY", 1.03
   ],
   [
     "NICKEL", 2.05
